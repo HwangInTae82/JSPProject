@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT COUNT(*) AS COUNT
+		FROM BOARD
+		WHERE BOARD_TYPE = 1 
+			AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="selectList">
+		SELECT  BOARD_NO,
+				CATEGORY_NANE,
+				BOARD_TITLE,
+				USER_ID,
+				COUNT,
+				TO_CHAR(CREATE_DATE, 'YYYY.MM.DD') AS "CREATE_DATE"
+		FROM BOARD
+		JOIN CATEGORY USING (CATEGORY_NO)
+		JOIN MEMBER M ON(BOARD_WRITER = USER_NO)
+		WHERE M.STATUS = 'Y'
+	</entry>
+	
+</properties>

@@ -1,0 +1,16 @@
+package com.kh.member.model.vo;
+
+public class Member {
+
+	private int userNo;
+	private String userId;
+	private String userPwd;
+	private String userName;
+	private String phone;
+	private String email;
+	private String address;
+	private String interest;
+	private String enrollDate;
+	private String modifyDate;
+	private String status;
+}
