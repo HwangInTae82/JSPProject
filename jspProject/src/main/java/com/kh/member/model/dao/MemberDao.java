@@ -14,7 +14,7 @@ import static com.kh.common.JDBCTemplate.*;
 
 public class MemberDao {
 	private Properties prop = new Properties();
-
+	
 	public MemberDao() {
 		String filePath = MemberDao.class.getResource("/db/sql/member-mapper.xml").getPath();
 		
@@ -63,12 +63,15 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return m;
 	}
 	
 	public int insertMember(Connection conn, Member m) {
 		//insert -> 처리된 행 수 -> 반환
+		
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertMember");
 		
@@ -83,7 +86,6 @@ public class MemberDao {
 			pstmt.setString(7, m.getInterest());
 			
 			result = pstmt.executeUpdate();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -94,8 +96,10 @@ public class MemberDao {
 	}
 	
 	public int updateMember(Connection conn, Member m) {
-		//update -> 처리된 행 수 -> 반환
+		//update -> 처리된 행 수 
+		
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateMember");
 		
@@ -155,11 +159,13 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}
+		
 		return m;
 	}
 	
-	public int updatePwdMember(Connection conn, String userId, String updatePwd) {
+	public int updateMemberPwd(Connection conn,String userId,String updatePwd) {
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateMemberPwd");
 		
@@ -175,13 +181,15 @@ public class MemberDao {
 		} finally {
 			close(pstmt);
 		}
+		
 		return result;
 	}
 	
-	public int deleteMember(Connection conn, String userId) {
+	public int deleteMember(Connection conn,String userId) {
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("deleteMember");
+		String sql = prop.getProperty("deleteMeber");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -194,6 +202,34 @@ public class MemberDao {
 		} finally {
 			close(pstmt);
 		}
+		
 		return result;
+	}
+	
+	public int idCheck(Connection conn, String checkId) {
+		//select -> 같은 ID로 되어있는 멤버 숫자로만 조회 -> resultSet
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("idCheck");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
 	}
 }

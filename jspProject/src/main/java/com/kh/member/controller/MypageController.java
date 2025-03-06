@@ -10,16 +10,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MypageController
+ * Servlet implementation class MyPageController
  */
 @WebServlet("/myPage.me")
-public class MypageController extends HttpServlet {
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MypageController() {
+    public MyPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class MypageController extends HttpServlet {
 		if(session.getAttribute("loginUser") == null) {
 			session.setAttribute("alertMsg", "로그인 후 이용가능한 서비스 입니다.");
 			response.sendRedirect(request.getContextPath());
-		}else {
+		} else {
 			request.getRequestDispatcher("views/member/myPage.jsp").forward(request, response);
 		}
 	}

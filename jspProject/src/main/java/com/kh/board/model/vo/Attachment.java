@@ -22,5 +22,4 @@ public class Attachment {
 	private Date uploadDate;
 	private int fileLevel;
 	private String status;
-	
 }

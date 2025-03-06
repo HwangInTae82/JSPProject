@@ -37,8 +37,8 @@ public class BoardEnrollController extends HttpServlet {
 		
 		request.setAttribute("categorys", list);
 		
-		request.getRequestDispatcher("views/board/boardEnrollForm.jsp").forward(request, response);	
-		}
+		request.getRequestDispatcher("views/board/boardEnrollForm.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

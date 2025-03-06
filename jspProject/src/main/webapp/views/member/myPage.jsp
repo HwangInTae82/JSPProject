@@ -8,8 +8,8 @@
 	<title>Insert title here</title>
 	<style>
 		.outer{
-			background: rgb(187, 211, 248);
-			color: rgb(48, 48, 48);
+			background: #4b89fc;
+			color: white;
 			width: 1000PX;
 			margin: auto;
 			margin-top: 50px;
@@ -24,13 +24,6 @@
 			display: flex;
 			flex-direction: column;
 		}
-        #delete-account-modal .modal-body form{
-            display: flex;
-			flex-direction: column;
-        }
-        #delete-account-btn{
-            margin: 0px 50px;
-        }
 	</style>
 </head>
 <body>
@@ -117,31 +110,18 @@
 			<div align="center">
 				<button type="submit" class="btn btn-sm btn-success">정보수정</button>
 				<button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#update-pwd-modal">비밀번호 변경</button>
-				<button type="button" class="btn btn-sm btn-danger" onclick="handleOnClick()">회원탈퇴</button>
+				<button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#delete-member-modal">회원탈퇴</button>
 			</div>
 		</form>
 	</div>
-	
-
-	<script>
-		function checkPwd(){
-			const pwd = document.querySelector("#enroll-form input[name=userPwd]").value;
-			const pwdCheck = document.querySelector("#enroll-form input[name=userPwdCheck]").value;
-
-			if(pwd !== pwdCheck){
-				alert("비밀번호가 일치하지 않습니다.");
-				return false;
-			}
-		}
-        function handleOnClick()  {
-            let ok = confirm("탈퇴 후 복구가 불가능합니다. 정말 탈퇴하시겠습니까?");
-            if (ok) {
-            var myModal = new bootstrap.Modal(document.getElementById('delete-account-modal'));
-            myModal.show();
-        }
-            }
-		
-	</script>
+	<!-- 
+		탈퇴하기 버튼 클릭시
+		탈퇴 후 복구가 불가능합니다.
+		정말 탈퇴하시겠습니까?
+		비밀번호 :
+		탈퇴하기버튼 -> /delete.me
+		=>  /delete.me받은 서버는 비밀번호가 맞는지 확인 후 status -> N으로 변경하고 로그아웃
+	 -->
 	
 	
 	
@@ -193,44 +173,31 @@
 	    </div>
 	  </div>
 	</div>
-
-<!-- 
-		탈퇴하기 버튼 클릭시
-		탈퇴 후 복구가 불가능합니다.
-		정말 탈퇴하시겠습니까?
-		비밀번호 : 
-		탈퇴하기버튼 -> /delete.me
-		=>  /delete.me받은 서버는 비밀번호가 맞는지 확인 후 status -> N으로 변경하고 로그아웃
-	 -->
-    <!-- 회원탈퇴 팝업 -->
-	<div class="modal" id="delete-account-modal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">회원탈퇴</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-              <form action="${pageContext.request.contextPath}/delete.me" method="post">
-              
-               <h3> </h3>
-                  <table align="center">
-                      <tr>
-                          <td>비밀번호 입력</td>
-                          <td><input type="password" name="userPwd" required></td>
-                      </tr>
-                  </table>
-                  <br>
-                  <button id="delete-account-btn" type="submit" class="btn btn-sm btn-danger" class="btn btn-sm btn-primary">회원 탈퇴</button>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
+	
+	<!-- 탈퇴 팝업 -->
+	<div class="modal" id="delete-member-modal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">회원탈퇴</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+			<form action="${pageContext.request.contextPath}/delete.me" method="post">
+				<b>탈퇴 후 복구가 불가능합니다.<br>
+				정말로 탈퇴하시겠습니까?</b>
+				<br><br>
+				비밀번호  : <input type="password" name="userPwd" required>
+				<br><br>
+				<button type="submit" class="btn btn-sm btn-danger">탈퇴하기</button>
+			</form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 </body>
 </html> 

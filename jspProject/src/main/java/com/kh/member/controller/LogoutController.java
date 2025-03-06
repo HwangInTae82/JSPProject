@@ -1,13 +1,13 @@
 package com.kh.member.controller;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
 
 /**
  * Servlet implementation class LogoutController
@@ -28,11 +28,12 @@ public class LogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//로그아웃 -> session에서 loginUser삭제, session만료 
 		HttpSession session = request.getSession();
-		//session.removeAttribute("loginUser");
+//		session.removeAttribute("loginUser");
 		session.invalidate(); //세션만료
 		
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect(request.getContextPath()); // /jp
 	}
 
 	/**

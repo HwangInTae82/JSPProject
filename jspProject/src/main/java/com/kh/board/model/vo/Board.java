@@ -24,7 +24,7 @@ public class Board {
 	private String createDate;
 	private String status;
 	
-	private String CategoryName;
-	private String UserId;
-	
+	private String categoryName;
+	private String userId;
+	private String thumbnailImg;
 }

@@ -6,11 +6,13 @@
     <fullyQualifiedTypeName name="com.kh.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="com.kh.board.model.vo.Category"/>
     <fullyQualifiedTypeName name="org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload"/>
     <fullyQualifiedTypeName name="org.apache.commons.fileupload2.core.DiskFileItemFactory"/>
     <fullyQualifiedTypeName name="org.apache.commons.fileupload2.core.FileItem"/>
     <fullyQualifiedTypeName name="java.nio.charset.Charset"/>
-    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.Category"/>
+    <fullyQualifiedTypeName name="com.kh.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="com.kh.board.model.vo.Reply"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 </qualifiedTypeNameHistroy>
